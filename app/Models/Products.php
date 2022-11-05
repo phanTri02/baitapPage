@@ -14,5 +14,4 @@ class Products extends Model
     public function products(){
         return $this->hasMany('App\Products','','id');
     }
-
 }

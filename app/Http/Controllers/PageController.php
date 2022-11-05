@@ -12,14 +12,15 @@ class PageController extends Controller
     {
         $slide = Slide::all();
 
-        $new_product = Products::where('new',1)-> get();
+        $new_product = Products::where('new',1)-> paginate(8);
 
-        $promotion_product = Products::where('promotion_pricce', '<>', 0);
+        $promotion_product = Products::where('promotion_price', '<>', 0)-> paginate(4);
         return view('page.trangchu', compact('slide', 'new_product', 'promotion_product'));
     }
 
     public function getModel()
     {
+    
         return view('page.product_model');
     }
 

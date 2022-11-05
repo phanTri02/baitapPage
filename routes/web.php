@@ -48,3 +48,5 @@ Route::get('/product_model', [PageController::class, 'getModel']);
 Route::get('/product_detail', [PageController::class, 'getDetail']);
 Route::get('/contact', [PageController::class, 'getContact']);
 Route::get('/about', [PageController::class, 'getAbout']);
+
+
