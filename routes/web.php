@@ -44,9 +44,11 @@ use App\Http\Controllers\PageController;
 // Route::post('/signup', [signupController::class, 'displayInfor']);
 
 Route::get('/trangchu', [PageController::class, 'getIndex']);
-Route::get('/product_model', [PageController::class, 'getModel']);
+Route::get('/type/{id}', [PageController::class, 'getLoaiSp']);
 Route::get('/product_detail', [PageController::class, 'getDetail']);
 Route::get('/contact', [PageController::class, 'getContact']);
 Route::get('/about', [PageController::class, 'getAbout']);
+
+Route::get('loai-san-pham/{type}', [PageController::class, 'getLoaiSp']);
 
 
