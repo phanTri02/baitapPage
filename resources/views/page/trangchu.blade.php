@@ -44,26 +44,29 @@
                         @foreach($new_product as $new)
                             <div class="col-sm-3">
                                 <div class="single-item">
+                                    <div class="single-item-header">
+                                        <a href="detail/{{$new->id}}"><img width="200" height="200"
+                                            src="/source/image/product/{{$new->image}}" alt=""></a>
+                                    </div>
                                     @if($new->promotion_price!=0)
-                                    <div class="ribbon-wrapper"><div class="ribbon-sale">i love you</div></div>
+                                    <div class="ribbon-wrapper">
+                                        <div class="ribbon-sale">Sale</div>
+                                    </div>
                                     @endif
-                                        <div class="single-item-header">
-                                            <a href="product.html"><img src="source/image/product/{{$new->image}}" alt=""></a>
-                                        </div>
-                                        <div class="single-item-body">
-                                            <p class="single-item-title">{{$new->name}}</p>
-                                            <p class="single-item-price">
-                                                @if($new->promotion_price==0)
-                                                    <span class="flash-dell">{{$new->unit_price}} VND</span>
-                                                @else
-                                                    <span class="flash-del">{{$new->unit_price}}VND</span>
-                                                    <span class="flash-sale">{{$new->promotion_price}} VND</span>
-                                                @endif
-                                            </p>
-                                        </div>
+                                    <div class="single-item-body">
+                                        <p class="single-item-title">{{$new->name}}</p>
+                                        <p class="single-item-price">
+                                            @if($new->promotion_price==0)
+                                                <span class="flash-dell">{{number_format($new->unit_price)}} VND</span>
+                                            @else
+                                                <span class="flash-del">{{number_format($new->unit_price)}}VND</span>
+                                                <span class="flash-sale">{{number_format($new->promotion_price)}} VND</span>
+                                            @endif
+                                        </p>
+                                    </div>
                                     <div class="single-item-caption">
-                                        <a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                        <a class="add-to-cart pull-left" href="{{route('themgiohang',$new->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="beta-btn primary" href="detail/{{$new->id}}">Details <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -76,7 +79,7 @@
                     <div class="space50">&nbsp;</div>
 
                     <div class="beta-products-list">
-                        <h4>Promotion Products- San pham khuyen mai</h4>
+                        <h4>Promotion Products</h4>
                         <div class="beta-products-details">
                             <p class="pull-left">Found {{count($promotion_product)}} products</p>
                             <div class="clearfix"></div>
@@ -96,8 +99,8 @@
                                         </p>
                                     </div>
                                     <div class="single-item-caption">
-                                        <a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                        <a class="add-to-cart pull-left" href="{{route('themgiohang',$new->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="beta-btn primary" href="detail/{{$new->id}}">Details <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>

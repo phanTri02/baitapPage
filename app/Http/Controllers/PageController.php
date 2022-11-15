@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Http\Request;
 use App\Models\Slide;
 use App\Models\Products;
 use App\Models\Producttype;
+use App\Models\Comment;
+use App\Models\Cart;
+
 
 class PageController extends Controller
 {
@@ -38,9 +42,31 @@ class PageController extends Controller
         return view('page.product_model');
     }
 
-    public function getDetail()
+    public function getDetail(Request $request)
     {
-        return view('page.product_detail');
+        $sanpham = Products::where('id', $request->id)->first();
+        $splienquan = Products::where('id', '<>', $sanpham->id, 'and', 'id_type', '=', $sanpham->id_type,)->paginate(3);
+        $comments = Comment::where('id_product', $request->id)->get();
+        return view('page.product_detail', compact('sanpham', 'splienquan', 'comments'));
+    }
+
+    public function getAddToCart(Request $req, $id) 
+    {
+        $product = Products::find($id);
+        $oldCart = Session('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product,$id);
+        $req->session()->put('cart', $cart);
+        return redirect()->back();
+    }
+
+    public function getDelItemCart($id)
+    {
+        $oldCart = Session('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+        Session::put('cart', $cart);
+        return redirect()->back();
     }
 
     public function getContact()
