@@ -61,6 +61,18 @@ Route::get('del-cart/{id}', [PageController::class, 'getDelItemCart'])->name('xo
 Route::get('check-out', [PageController::class, 'getCheckout'])->name('dathang');
 Route::post('check-out', [PageController::class, 'postCheckout'])->name('dathang');
 
+// ----------------------LOGIN/REGISTER ---------------------
+Route::get('/register', function () {
+    return view('page.register');
+});
+Route::post('/register', [PageController::class, 'Register']);
+
+Route::get('/login', function () {
+    return view('page.login');
+});
+Route::post('/login', [PageController::class, 'Login']);
+Route::get('/logout', [PageController::class, 'Logout']);
+
 // ----------------------ADMIN-------------------------
 // Route::get('/admin', [PageController::class, 'getIndexAdmin']);
 // Route::get('/admin-add-form', [PageController::class, 'getAdminAdd'])->name('add-product');
